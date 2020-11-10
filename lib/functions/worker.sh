@@ -370,12 +370,7 @@ function LintCodebase() {
             info "Successfully validation in the expected TAP format for ${F[W]}[${LINTER_NAME}]"
           fi
         else
-          warn "No TAP expected file found at:[${EXPECTED_FILE}]"
-          info "skipping report assertions"
-          #####################################
-          # Append the file type to the array #
-          #####################################
-          WARNING_ARRAY_TEST+=("${FILE_TYPE}")
+          fatal "No TAP expected file found at:[${EXPECTED_FILE}]"
         fi
       fi
     fi
