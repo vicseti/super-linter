@@ -292,7 +292,7 @@ function LintCodebase() {
           # Store the linting as a temporary file in TAP format #
           #######################################################
           if IsTAP; then
-            NotOkTap "${INDEX}" "${FILE}" "${TMPFILE}"
+            NotOkTap "${INDEX}" "${FILE_NAME}" "${TMPFILE}"
             AddDetailedMessageIfEnabled "${LINT_CMD}" "${TMPFILE}"
           fi
         else
@@ -305,7 +305,7 @@ function LintCodebase() {
           # Store the linting as a temporary file in TAP format #
           #######################################################
           if IsTAP; then
-            OkTap "${INDEX}" "${FILE}" "${TMPFILE}"
+            OkTap "${INDEX}" "${FILE_NAME}" "${TMPFILE}"
           fi
         fi
       else
@@ -507,7 +507,7 @@ function LintAnsibleFiles() {
         # Store the linting as a temporary file in TAP format #
         #######################################################
         if IsTAP; then
-          NotOkTap "${INDEX}" "${FILE}" "${TMPFILE}"
+          NotOkTap "${INDEX}" "${FILE_NAME}" "${TMPFILE}"
           AddDetailedMessageIfEnabled "${LINT_CMD}" "${TMPFILE}"
         fi
 
@@ -521,7 +521,7 @@ function LintAnsibleFiles() {
         # Store the linting as a temporary file in TAP format #
         #######################################################
         if IsTAP; then
-          OkTap "${INDEX}" "${FILE}" "${TMPFILE}"
+          OkTap "${INDEX}" "${FILE_NAME}" "${TMPFILE}"
         fi
       fi
     done
