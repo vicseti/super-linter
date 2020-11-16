@@ -113,11 +113,5 @@ Reports() {
       warn "Report output folder (${REPORT_OUTPUT_FOLDER}) does NOT exist."
     fi
   fi
-
-  ################################
-  # Prints for warnings if found #
-  ################################
-  for TEST in "${WARNING_ARRAY_TEST[@]}"; do
-    warn "Expected file to compare with was not found for ${TEST}"
-  done
 }
+################################################################################
