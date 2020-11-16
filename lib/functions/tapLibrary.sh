@@ -26,12 +26,14 @@ function TransformTAPDetails() {
     # Do some additional processing for:                       #
     # - arm-ttk: it includes the execution time that's dynamic #
     # - clojure: it includes the execution time that's dynamic #
+    # - Go: includes a dynamic identifier                      #
     ############################################################
     echo "${DATA}" \
     | awk 'BEGIN{RS="\n";ORS="\\n"}1' \
     | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" \
     | sed -r "s/\s\([0-9]*\sms\)//g" \
     | sed -r "s/\s[0-9]*ms//g" \
+    | sed -r "s/S[0-9]{4}//g" \
     | tr ':' ' '
   fi
 }
