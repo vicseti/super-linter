@@ -21,10 +21,16 @@ function IsTAP() {
 function TransformTAPDetails() {
   DATA=${1}
   if [ -n "${DATA}" ] && [ "${OUTPUT_DETAILS}" == "detailed" ]; then
-    #########################################################
-    # Transform new lines to \\n, remove colours and colons #
-    #########################################################
-    echo "${DATA}" | awk 'BEGIN{RS="\n";ORS="\\n"}1' | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" | tr ':' ' '
+    ############################################################
+    # Transform new lines to \\n, remove colours and colons.   #
+    # Do some additional processing for:                       #
+    # - arm-ttk: it includes the execution time that's dynamic #
+    ############################################################
+    echo "${DATA}" \
+    | awk 'BEGIN{RS="\n";ORS="\\n"}1' \
+    | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" \
+    | sed -r "s/\s\([0-9]*\sms\)//g" \
+    | tr ':' ' '
   fi
 }
 ################################################################################
