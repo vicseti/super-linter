@@ -23,10 +23,8 @@ function TransformTAPDetails() {
   if [ -n "${DATA}" ] && [ "${OUTPUT_DETAILS}" == "detailed" ]; then
     ############################################################
     # Transform new lines to \\n, remove colours and colons.   #
-    # Do some additional processing for:                       #
-    # - arm-ttk: it includes the execution time that's dynamic #
-    # - clojure: it includes the execution time that's dynamic #
-    # - Go: includes a dynamic identifier                      #
+    # Additionally, remove some dynamic parts from generated   #
+    # reports.                                                 #
     ############################################################
     echo "${DATA}" \
     | awk 'BEGIN{RS="\n";ORS="\\n"}1' \
@@ -34,6 +32,7 @@ function TransformTAPDetails() {
     | sed -r "s/\s\([0-9]*\sms\)//g" \
     | sed -r "s/\s[0-9]*ms//g" \
     | sed -r "s/S[0-9]{4}//g" \
+    | sed -r "s/js:[0-9]*:[0-9]*/js/g" \
     | tr ':' ' '
   fi
 }
